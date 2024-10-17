@@ -24,10 +24,10 @@ class JurnalController extends Controller
      */
     public function index(Request $request)
     {
+        
         if($request->session()->has('id_guru')){
 			
             $sekolah = Sekolah::findOrFail('1');
-            $config = Config::findOrFail('1');
             $app = DB::table('app')->where('id','=','1')->first();
             $skrg = Carbon::now()->dayOfWeek;
             $tanggal = Carbon::now()->format('Y-m-d');
@@ -51,7 +51,7 @@ class JurnalController extends Controller
                     ->where('id_status','<=','2')
                     ->whereBetween('kbm.tanggal', [$periode->awal, $periode->akhir])     
                     ->get();
-                return view('pages.jurnal.create2',compact(['sekolah','config','app','kelas','mapel','tanggal','skrg','cek','kbm','lokasi']));
+                return view('pages.jurnal.create2',compact(['sekolah','app','kelas','mapel','tanggal','skrg','cek','kbm','lokasi']));
                 echo $request->session()->get('nama');
         }else{
             return redirect('/jurnal/login');

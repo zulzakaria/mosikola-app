@@ -17,7 +17,7 @@
 </head>
 
 <body class="bg-light">
-    <div class="container-fluit">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <h4 class="text-center mb-4">{{ $sekolah->appName }}<br />

@@ -91,6 +91,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/jumlahPekan', [TargetController::class, 'jumlahPekan'])->name('jumlahPekan');
 
     Route::get('/laporan/perbulan', [LaporanController::class, 'laporanPerbulan'])->name('laporan.perbulan');
+    Route::post('/laporan/perbulan/filter', [LaporanController::class, 'laporanPerbulanFilter'])->name('laporan.perbulan.filter');
 
     
 });

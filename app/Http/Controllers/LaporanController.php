@@ -17,6 +17,7 @@ use App\Models\Target;
 use App\Models\JumlahPekan;
 use App\Models\JurnalTendik;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Support\Facades\DB;
 
 class LaporanController extends Controller
@@ -113,7 +114,60 @@ class LaporanController extends Controller
     }
 
     public function laporanPerbulan(){
-        $guru = Guru::where('aktif','=','1')->get();
-        return view('pages.laporan.perbulan', compact(['guru']));
+        // $guru = Guru::where('aktif','=','1')->get();
+        $guru = Guru::with('target')->has('target')->get();
+        $capaian_ar = array();
+
+        foreach($guru as $guru){
+            $capaian = Kbm::where('id_guru', $guru->id)->whereMonth('tanggal',Carbon::now()->month)->count();
+            $target = $guru->target->target * 4;
+            $persen = $target != 0 ? (number_format($capaian/$target * 100,2)) : 0;
+            $capaian_ar[] = array('nama' => $guru->nama,'target' => $target, 'capaian' => $capaian, 'persen' => $persen);
+        }
+
+        return view('pages.laporan.perbulan', compact(['capaian_ar']));
+    }
+
+    public function laporanPerbulanFilter(Request $request) {
+        $startDate = $request->startDate;
+        $endDate = $request->endDate;
+        // $rentang = explode(' - ',$request->rentang);
+        // $awal = explode('/',$rentang[0]);
+        // $awal = $awal[2].'-'.$awal[1].'-'.$awal[0];
+
+        // $akhir = explode('/',$rentang[1]);
+        // $akhir = $akhir[2].'-'.$akhir[1].'-'.$akhir[0];
+
+        // dd($awal,$akhir);
+
+        $jumlah_pekan = $this->datediffInWeeks($startDate, $endDate);
+
+        $guru = Guru::with('target')->has('target')->get();
+        $capaian_ar = array();
+        $dataArr['data'] = array();
+
+        $no = 1;
+        foreach($guru as $guru){
+            $capaian = Kbm::where('id_guru', $guru->id)->whereBetween('tanggal', [$startDate, $endDate])->count();
+            $target = $guru->target->target * $jumlah_pekan;
+            $persen = $target != 0 ? (number_format($capaian/$target * 100,2)) : 0;
+            // $capaian_ar[] = array('nama' => $guru->nama,'target' => $target, 'capaian' => $capaian);
+            $dataArr['data'][] = array($no++, $guru->nama, $target . ' JP', $capaian . ' JP',  $persen .'%');
+        }
+        
+        
+        // foreach($guru as $guru){
+        // }
+
+        return response()->json($dataArr);
+
+    }
+
+    private function datediffInWeeks($date1, $date2)
+    {
+        if($date1 > $date2) return $this->datediffInWeeks($date2, $date1);
+        $first = DateTime::createFromFormat('Y-m-d', $date1);
+        $second = DateTime::createFromFormat('Y-m-d', $date2);
+        return floor($first->diff($second)->days/7 + 1);
     }
 }

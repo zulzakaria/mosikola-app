@@ -18,4 +18,8 @@ class Guru extends Model
         'foto',
         'aktif'
     ];
+
+    function target() {
+        return $this->hasOne(Target::class, 'id_guru','id');
+    }
 }

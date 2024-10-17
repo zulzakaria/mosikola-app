@@ -44,10 +44,7 @@
             <div class="py-5 text-center">
                 <h2>Selamat datang, <strong><i>{{ $cek->nama }}</strong></i> <a href="/jurnal/logout"
                         class="btn btn-sm btn-warning btn-block mb-4"><b>Logout</b></a></h2>
-                <a href="/jurnal/umum" class="btn btn-md btn-primary">Jurnal Kegiatan Umum</a>
-                @if ($config->lampau == 1)
-                    <a href="/jurnal/lampau" class="btn btn-md btn-danger">Jurnal Kegiatan Lampau</a>
-                @endif
+                <a href="/jurnal/umum" class="btn btn-md btn-primary">Isi Jurnal Kegiatan Umum</a>
                 <a href="/guru/profil" class="btn btn-md btn-success">Update Profil PTK</a>
                 <p></p>
                 <?php
@@ -172,7 +169,7 @@
                             <div class="col-md-12">
                                 <label for="formFile" class="form-label">Lampiran Foto <code>***</code></label>
                                 <input class="form-control" type="file" id="formFile" name="foto"
-                                    accept=".jpg, .jpeg, .png">
+                                    accept=".jpg, .jpeg, .png" required>
                             </div>
                             <div class="col-md-12">
                                 <label for="formFile" class="form-label"><code>*** : Harap melampirkan foto anda &
