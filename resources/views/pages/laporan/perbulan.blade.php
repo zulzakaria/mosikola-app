@@ -185,7 +185,7 @@
                 }
 
                 try {
-                    const response = await fetch('{{ env("APP_URL") }}/laporan/perbulan/filter', options);
+                    const response = await fetch('{{ route("laporan.perbulan.filter") }}', options);
 
                     if (!response.ok) {
                         console.error(`Error: ${response.statusText}`);
