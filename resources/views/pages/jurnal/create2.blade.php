@@ -111,14 +111,14 @@
                             <p></p>
                             <label for="state" class="form-label">Jam Ke .. Sampai .. :</label>
                             <div class="col-md-12 input-group">
-                                <select class="form-select" id="state" name="dari" required>
+                                <select class="form-select" id="state" name="dari" onchange="dayCheck(this)" required>
                                     <option value="">Pilih...</option>
                                     @for ($i = 1; $i <= 10; $i++)
                                         <option value="{{ $i }}">{{ $i }}</option>
                                     @endfor
                                 </select>
                                 <label for="state" class="form-label">&nbsp; - &nbsp;</label>
-                                <select class="form-select" id="state" name="ke" required>
+                                <select class="form-select" id="state" name="ke" onchange="dayCheck(this)" required>
                                     <option value="">Pilih...</option>
                                     @for ($i = 1; $i <= 10; $i++)
                                         <option value="{{ $i }}">{{ $i }}</option>
@@ -268,6 +268,28 @@
     </div>
 
 
+    <script type="text/javascript">
+        function dayCheck(comboBox){
+            let pilihan_jam = comboBox;
+            
+            let today = new Date();
+
+            if(today.getDay() === 1){
+                if(pilihan_jam.value === "1"){
+                    pilihan_jam.value = "";
+                    alert('Jam ke 1 hari senin adalah Upacara')
+                }
+            }
+
+            if(today.getDay() === 5){
+                if(pilihan_jam.value === 9 || pilihan_jam.value === 10){
+                    alert('Jam jumat hanya sampai jam pelajaran ke 8')
+                    pilihan_jam.value = '';
+                }
+            }
+            
+        }
+    </script>
 </body>
 
 </html>
