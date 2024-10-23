@@ -163,6 +163,11 @@ class LaporanController extends Controller
 
     }
 
+    public function laporanPerkelas() {
+        $kelas = Kelas::orderBy('tingkat','ASC')->get();
+        return view('pages.laporan.perkelas', compact('kelas'));
+    }
+
     private function datediffInWeeks($date1, $date2)
     {
         if($date1 > $date2) return $this->datediffInWeeks($date2, $date1);

@@ -10,4 +10,5 @@ class Jp extends Model
     use HasFactory;
 
     public $table = 'jp';
+    public $timestamps = false;
 }

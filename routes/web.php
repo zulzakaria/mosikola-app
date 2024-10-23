@@ -15,6 +15,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\LoginTendikController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\JamPelajaranController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -86,12 +87,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/periode/destroy', [PeriodeController::class, 'destroy'])->name('periode.destroy');
     Route::post('/periode/aktifkan', [PeriodeController::class, 'aktifkan'])->name('periode.aktifkan');
 
+    Route::get('jam', [JamPelajaranController::class, 'index'])->name('jam.index');
+    Route::post('jam', [JamPelajaranController::class, 'gantiStatus'])->name('jam.ganti');
+
     Route::get('/target', [TargetController::class, 'index'])->name('target.index');
     Route::post('/target/store', [TargetController::class, 'store'])->name('target.store');
     Route::post('/jumlahPekan', [TargetController::class, 'jumlahPekan'])->name('jumlahPekan');
 
     Route::get('/laporan/perbulan', [LaporanController::class, 'laporanPerbulan'])->name('laporan.perbulan');
     Route::post('/laporan/perbulan/filter', [LaporanController::class, 'laporanPerbulanFilter'])->name('laporan.perbulan.filter');
+
+    Route::get('/laporan/perkelas', [LaporanController::class, 'laporanPerkelas'])->name('laporan.perkelas');
 
     
 });

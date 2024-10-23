@@ -73,7 +73,11 @@
                         <li class="nav-item">
                             <a href="/laporan/perbulan" class="nav-link">
                                 <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;
-                                <p>Per Bulan</p>
+                                <p>Guru Per Bulan</p>
+                            </a>
+                            <a href="/laporan/perkelas" class="nav-link">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;
+                                <p>Per Kelas</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -97,6 +101,12 @@
                             <a href="/periode" class="nav-link">
                                 <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;
                                 <p>Periode</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/jam" class="nav-link">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;
+                                <p>Jam Pelajaran</p>
                             </a>
                         </li>
                         <li class="nav-item">
