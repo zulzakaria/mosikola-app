@@ -11,6 +11,7 @@ use App\Models\Lokasi;
 use App\Models\Status;
 use App\Models\Periode;
 use App\Models\Sekolah;
+use App\Models\Jp;
 use App\Models\App;
 use App\Models\Config;
 use Illuminate\Support\Facades\DB;
@@ -35,6 +36,7 @@ class JurnalController extends Controller
             $mapel = Mapel::all();
             $lokasi = Lokasi::where('id','>',0)->get();
             $periode = Periode::where('aktif','=','1')->first();
+            $jp = Jp::where('hari', date('w'))->where('is_on', true)->get();
             
             $id_guru = $request->session()->get('id_guru');
             
@@ -51,7 +53,7 @@ class JurnalController extends Controller
                     ->where('id_status','<=','2')
                     ->whereBetween('kbm.tanggal', [$periode->awal, $periode->akhir])     
                     ->get();
-                return view('pages.jurnal.create2',compact(['sekolah','app','kelas','mapel','tanggal','skrg','cek','kbm','lokasi']));
+                return view('pages.jurnal.create2',compact(['sekolah','app','kelas','mapel','tanggal','skrg','cek','kbm','lokasi', 'jp']));
                 echo $request->session()->get('nama');
         }else{
             return redirect('/jurnal/login');
