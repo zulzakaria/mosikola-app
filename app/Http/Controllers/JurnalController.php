@@ -52,7 +52,7 @@ class JurnalController extends Controller
                     ->orderBy('kbm.id_jp', 'ASC')
                     ->where('id_status','<=','2')
                     ->whereBetween('kbm.tanggal', [$periode->awal, $periode->akhir])     
-                    ->get();
+                    ->simplePaginate(10);
                 return view('pages.jurnal.create2',compact(['sekolah','app','kelas','mapel','tanggal','skrg','cek','kbm','lokasi', 'jp']));
                 echo $request->session()->get('nama');
         }else{

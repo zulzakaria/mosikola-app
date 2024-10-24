@@ -26,7 +26,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Rekap Per Bulan</li>
+                            <li class="breadcrumb-item active">Laporan Periode Tertentu</li>
                         </ol>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h1>Rekapitulasi Data Per Bulan</h1>
+                                <h1>Rekapitulasi Data Periode</h1>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
